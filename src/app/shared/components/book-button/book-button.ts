@@ -9,7 +9,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './book-button.css',
 })
 export class BookButton {
-  position = input<number>();
+  position     = input<number>();
   abbreviation = input<string>();
-  name = input<string>();
+  name         = input<string>();
+  translation  = input<string>();
 }

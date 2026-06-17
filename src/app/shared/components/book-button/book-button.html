@@ -2,7 +2,7 @@
   class="flex items-center p-2 border border-transparent
          hover:bg-white hover:border-gray-100 hover:shadow-lg
          transition duration-300 rounded-lg"
-  [routerLink]="['/livro',abbreviation()]"
+  [routerLink]="['/', translation(), abbreviation()]"
 >
     <span class="p-3 text-gray-300">{{ position() }}</span>
     <span class="p-3 text-gray-400 font-semibold">{{ abbreviation() | titlecase}}</span>

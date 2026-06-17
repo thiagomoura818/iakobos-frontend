@@ -1,8 +1,25 @@
 <app-header></app-header>
 
-<div class="w-5/6 m-auto">
-    <div>
-
+<div class="w-5/6 m-auto my-5">
+    <div class="flex justify-between items-center">
+        <div>
+            <a class="text-gray-400 hover:text-gray-700 transition"[routerLink]="['/', translation(), abbreviation()]">&larr; {{book()?.name}}</a>
+        </div>
+        <div class="flex items-center gap-4">
+            @if(chapter()==1){
+                <a class="text-gray-200 cursor-not-allowed"><</a>
+            }
+            @else {
+                <a class="text-gray-700" [routerLink]="['/',translation(), book()?.abbreviation?.toLowerCase(), chapter()-1]"><</a>
+            }
+            
+            <span class="text-sm text-gray-500">Capítulo {{chapter()}}</span>
+            @if (chapter()==chapterQntd()) {
+                <a class="text-gray-200 cursor-not-allowed">></a>
+            }@else{
+                <a class="text-gray-700" [routerLink]="['/',translation(), book()?.abbreviation?.toLowerCase(), chapter()+1]">></a>
+            }
+        </div>        
     </div>
     <div class="border-b-1 border-gray-100 p-4">
         <h2 class="text-2xl font-semibold">{{book()?.name}}</h2>

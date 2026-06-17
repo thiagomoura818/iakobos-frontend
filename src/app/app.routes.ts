@@ -10,7 +10,7 @@ export const routes: Routes = [
         pathMatch:'full'
     },
     {
-        path:'livro/:sigla', component: BookInfo
+        path:':traducao/:sigla', component: BookInfo
     },
     {
         path:':traducao/:sigla/:capitulo', component: ChapterRead
