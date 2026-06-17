@@ -25,4 +25,8 @@ export class BookService {
   findByTranslation(translationId: number): Observable<BookResponse[]>{
     return this.http.get<BookResponse[]>(this.apiUrl);
   }
+
+  findBookByAbbreviation(abbreviation: string): Observable<BookResponse>{
+    return this.http.get<BookResponse>(`${this.apiUrl}/abbreviation/${abbreviation}`);
+  }
 }

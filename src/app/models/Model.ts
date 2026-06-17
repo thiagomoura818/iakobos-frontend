@@ -5,3 +5,12 @@ export interface BookResponse {
   abbreviation: string;
   position: number;
 }
+
+export interface VerseTextResponse{
+    id: number;
+    translationId: number;
+    bookId: number;
+    chapter: number;
+    verse: string;
+    text: string;
+}

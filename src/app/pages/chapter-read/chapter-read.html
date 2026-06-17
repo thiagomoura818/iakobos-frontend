@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<div class="w-5/6 m-auto">
+    <div>
+
+    </div>
+    <div class="border-b-1 border-gray-100 p-4">
+        <h2 class="text-2xl font-semibold">{{book()?.name}}</h2>
+        <h3 class="text-sm text-gray-400">Capítulo {{chapter()}}</h3>
+    </div>
+    @for (item of this.verses(); track $index) {
+        <app-versicle [versicleNumber]="item.verse" [text]="item.text"></app-versicle>
+    }
+</div>

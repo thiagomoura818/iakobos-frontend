@@ -2,10 +2,11 @@ import { Component, inject, input, signal } from '@angular/core';
 import { BookButton } from '../book-button/book-button';
 import { BookResponse } from '../../../models/Model';
 import { BookService } from '../../../core/services/book-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-testament-box',
-  imports: [BookButton],
+  imports: [BookButton, RouterLink],
   templateUrl: './testament-box.html',
   styleUrl: './testament-box.css',
 })

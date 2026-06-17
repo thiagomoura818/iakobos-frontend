@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="grid grid-cols1 w-4/6 m-auto my-8">
+    <a class="text-gray-400 hover:text-gray-700 transition" routerLink="">&larr; Todos os livros</a>
+
+    <div class="my-2">
+        <span class="text-sm text-gray-400">{{book()?.abbreviation | titlecase}}</span>
+        <span class="text-2xl mx-2">{{book()?.name}}</span>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-10 gap-4 text-center ">
+        @for (chapter of chapters(); track $index) {
+            <a [routerLink]="['/',translation, book()?.abbreviation?.toLowerCase(), chapter]" class="p-6 text-sm bg-white border-1 border-gray-100 rounded-md hover:shadow-mg shadow-sm transition-all duration-300 hover:border-gray-300" href="">{{chapter}}</a>
+        }
+    </div>
+</div>

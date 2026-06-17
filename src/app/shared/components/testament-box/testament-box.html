@@ -1,12 +1,12 @@
 <div class="grid grid-cols-1 p-6">
-    <p class="font-semibold text-xl">
+    <p class="mx-auto font-semibold text-xl">
         @if (testamentId() == 1) {
             {{ 'Antigo Testamento' }}
         }@else {
             {{ 'Novo Testamento' }}
         }
     </p>
-    <div class="grid grid-cols-3 gap-4 p-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-12">
         @for (book of testamentBooks(); track book.id) {
         <app-book-button [abbreviation]="book.abbreviation" [name]="book.name" [position]="book.position"></app-book-button>
         }
