@@ -1,7 +1,7 @@
 <div class=" border-b-1 border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-white">
     
     <div class="logo w-full md:w-auto text-center md:text-left">
-        <p class="text-2xl text-black tracking-wider">iakobos</p>
+        <a [routerLink]="['/']" class="text-2xl text-black tracking-wider">iakobos</a>
     </div>
 
     <div class="search-bar w-full max-w-2xl flex-1 mx-4">
@@ -32,12 +32,18 @@
     </div>
 
     <div class="login w-full md:w-auto flex items-center justify-center md:justify-end gap-4 text-sm font-semibold">
-        <a routerLink="/cadastro" class="text-black hover:text-gray-600 transition duration-200">
-            Criar conta
-        </a>
-        <a routerLink="/login" class="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-700 transition duration-200 text-center structural-btn">
-            Entrar
-        </a>
+        @if (isLoggedIn()) {
+            <button (click)="logout()" class="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-700 transition duration-200 text-center structural-btn">
+                Sair
+            </button>
+        } @else {
+            <a routerLink="/register" class="text-black hover:text-gray-600 transition duration-200">
+                Criar conta
+            </a>
+            <a routerLink="/login" class="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-700 transition duration-200 text-center structural-btn">
+                Entrar
+            </a>
+        }
     </div>
 
 </div>

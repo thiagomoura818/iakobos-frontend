@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="my-8 p-8 shadow rounded m-auto w-1/3 container bg-white">
+    <h1 class="text-2xl font-medium">Criar conta</h1>
+    <h1 class="text-gray-400 text-sm">Comece sua jornada para estudos bíblicos</h1>
+
+    <form [formGroup]="registerForms" (ngSubmit)="onSubmit()" class="my-8">
+        <app-forms-input-label [control]="nameControl" labelName="Nome" inputType="text" placeHolder="Seu nome completo"></app-forms-input-label>
+        <app-forms-input-label [control]="emailControl" labelName="E-mail" inputType="email" placeHolder="seu@email.com"></app-forms-input-label>
+        <app-forms-input-label [control]="passwordControl" labelName="Senha" inputType="password" placeHolder="Mínimo 8 caracteres"></app-forms-input-label>
+        <button
+        class="w-full rounded-lg bg-black p-2 text-white transition-colors duration-200 hover:bg-gray-800">
+        Criar conta
+        </button>
+    </form>
+    @if (errorMessage) {
+      <p class="text-red-500 text-sm mt-2 text-center">{{ errorMessage }}</p>
+    }
+</div>
