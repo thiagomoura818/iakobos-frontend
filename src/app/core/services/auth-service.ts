@@ -3,13 +3,14 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { JwtResponse, LoginRequest, RegisterRequest } from '../../models/Model';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = `${environment.apiUrl}/api/auth`;
   private http = inject(HttpClient);
   private cookieService = inject(CookieService);
   private readonly TOKEN_KEY = 'auth_token';

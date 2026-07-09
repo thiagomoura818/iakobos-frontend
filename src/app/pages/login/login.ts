@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth-service';
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../models/Model';
+import { extractErrorMessage } from '../../core/errors/error-utils';
 
 @Component({
   selector: 'app-login',
@@ -46,8 +47,7 @@ export class Login {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Erro ao fazer login.';
-        alert('Erro!');
+        this.errorMessage = extractErrorMessage(err);
       }
     });
   }

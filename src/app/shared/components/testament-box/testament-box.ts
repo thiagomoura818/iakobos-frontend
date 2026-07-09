@@ -4,6 +4,8 @@ import { BookResponse } from '../../../models/Model';
 import { BookService } from '../../../core/services/book-service';
 import { TranslationService } from '../../../core/services/translation.service';
 import { RouterLink } from "@angular/router";
+import { NotificationService } from '../../../core/services/notification-service';
+import { extractErrorMessage } from '../../../core/errors/error-utils';
 
 @Component({
   selector: 'app-testament-box',
@@ -15,6 +17,7 @@ export class TestamentBox {
 
   private bookService        = inject(BookService);
   private translationService = inject(TranslationService);
+  private notification       = inject(NotificationService);
 
   public testamentBooks = signal<BookResponse[]>([]);
   public testamentId    = input<number>();
@@ -35,7 +38,7 @@ export class TestamentBox {
           this.testamentBooks.set(books);
         },
         error: (err) => {
-          console.log('Erro ao buscar os livros por testamento: ', err);
+          this.notification.show(extractErrorMessage(err));
         }
       });
     }

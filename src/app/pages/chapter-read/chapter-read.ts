@@ -6,6 +6,8 @@ import { BookResponse, VerseTextResponse } from '../../models/Model';
 import { BookService } from '../../core/services/book-service';
 import { VerseTextService } from '../../core/services/verse-text-service';
 import { TranslationService } from '../../core/services/translation.service';
+import { NotificationService } from '../../core/services/notification-service';
+import { extractErrorMessage } from '../../core/errors/error-utils';
 
 @Component({
   selector: 'app-chapter-read',
@@ -26,6 +28,7 @@ export class ChapterRead implements OnInit {
   private bookService        = inject(BookService);
   private verseTextService   = inject(VerseTextService);
   private translationService = inject(TranslationService);
+  private notification = inject(NotificationService);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -58,7 +61,7 @@ export class ChapterRead implements OnInit {
         this.findVerses(translation, b.id, chapter);
       },
       error: (err) => {
-        console.error('Erro ao buscar o livro: ', err);
+        this.notification.show(extractErrorMessage(err));
       }
     });
   }
@@ -70,7 +73,7 @@ export class ChapterRead implements OnInit {
         this.findChapterQuantity(translation, bookId);
       },
       error: (err) => {
-        console.error('Erro ao buscar os versículos ', err);
+        this.notification.show(extractErrorMessage(err));
       }
     });
   }
@@ -81,7 +84,7 @@ export class ChapterRead implements OnInit {
         this.chapterQntd.set(v.length);
       },
       error: (err) => {
-        console.log('Erro ao buscar os capitulos do livro ', err);
+        this.notification.show(extractErrorMessage(err));
       }
     });
   }

@@ -6,6 +6,8 @@ import { BookResponse } from '../../models/Model';
 import { BookService } from '../../core/services/book-service';
 import { TranslationService } from '../../core/services/translation.service';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../core/services/notification-service';
+import { extractErrorMessage } from '../../core/errors/error-utils';
 
 @Component({
   selector: 'app-book-info',
@@ -20,6 +22,7 @@ export class BookInfo {
   private verseTextService   = inject(VerseTextService);
   private bookService        = inject(BookService);
   private translationService = inject(TranslationService);
+  private notification = inject(NotificationService);
 
   /** Expõe o signal para o template usar nos links dos capítulos. */
   translation = this.translationService.current;
@@ -29,7 +32,7 @@ export class BookInfo {
   ngOnInit(): void {
     const abbreviation = this.route.snapshot.paramMap.get('sigla');
     const traducao     = this.route.snapshot.paramMap.get('traducao');
-
+    
     // Sincroniza o service com o que está na URL e persiste no localStorage
     if (traducao) this.translationService.set(traducao);
 
@@ -43,7 +46,7 @@ export class BookInfo {
         this.findChapters(b.id);
       },
       error: (err) => {
-        console.log('Erro ao buscar o livro: ', err);
+        this.notification.show(extractErrorMessage(err));
       }
     });
   }
@@ -54,8 +57,7 @@ export class BookInfo {
         this.chapters.set(c);
       },
       error: (err) => {
-        console.log('Erro ao buscar os capítulos: ', err);
-      }
+        this.notification.show(extractErrorMessage(err));      }
     });
   }
 }

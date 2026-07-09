@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { VerseTextResponse } from '../../models/Model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VerseTextService {
-  private apiUrl = 'http://localhost:8080/versetext';
+  private apiUrl = `${environment.apiUrl}/versetext`;
   private http = inject(HttpClient);
 
   findChaptersByBookAndTranslation(translation: string, bookId: number): Observable<number[]>{

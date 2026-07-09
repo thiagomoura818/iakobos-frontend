@@ -5,6 +5,7 @@ import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../core/services/auth-service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../models/Model';
+import { extractErrorMessage } from '../../core/errors/error-utils';
 
 @Component({
   selector: 'app-register',
@@ -55,7 +56,7 @@ export class Register {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Erro ao registrar.';   
+        this.errorMessage = extractErrorMessage(err);
      }
     });
   }
